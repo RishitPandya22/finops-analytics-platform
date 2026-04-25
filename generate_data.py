@@ -54,26 +54,42 @@ for i in range(N):
                 np.random.randint(10, 50) if plan == 'Professional' else \
                 np.random.randint(40, 200)
 
-    cogs_rate = np.random.uniform(0.30, 0.50)
+    # More realistic COGS — varies by industry
+    industry_cogs = {
+        'Technology': 0.32, 'Healthcare': 0.45, 'Retail': 0.55,
+        'Finance': 0.35, 'Manufacturing': 0.50, 'Education': 0.38, 'Logistics': 0.48
+    }
+    cogs_rate = industry_cogs[industry] + np.random.uniform(-0.05, 0.05)
     cogs = round(monthly_revenue * cogs_rate, 2)
     gross_profit = round(monthly_revenue - cogs, 2)
     gross_margin = round((gross_profit / monthly_revenue) * 100, 2)
 
+    # Churn probability based on MULTIPLE realistic factors
     churn_prob = plan_churn_rate[plan]
-    if support_tickets > 5:
+    if support_tickets > 4:
+        churn_prob += 0.12
+    if support_tickets > 7:
+        churn_prob += 0.08
+    if login_frequency < 4:
         churn_prob += 0.10
-    if login_frequency < 5:
+    if login_frequency < 2:
         churn_prob += 0.08
     if tenure_months < 3:
-        churn_prob += 0.05
+        churn_prob += 0.06
     if payment == 'Invoice':
-        churn_prob += 0.03
+        churn_prob += 0.04
+    if monthly_revenue < plan_base_revenue[plan] * 0.90:
+        churn_prob += 0.05
+    if num_users == 1:
+        churn_prob += 0.05
 
+    churn_prob = min(churn_prob, 0.85)
     churned = 1 if random.random() < churn_prob else 0
 
-    ltv = round(monthly_revenue * tenure_months * (1 - cogs_rate), 2)
+    # NPS is now INDEPENDENT — just customer sentiment noise
+    nps_score = int(np.clip(np.random.normal(7, 2.5), 0, 10))
 
-    nps_score = np.random.randint(0, 6) if churned else np.random.randint(5, 11)
+    ltv = round(monthly_revenue * tenure_months * (1 - cogs_rate), 2)
 
     records.append({
         'customer_id': f'CUST-{10000 + i}',
