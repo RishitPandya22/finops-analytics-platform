@@ -126,9 +126,8 @@ streamlit run app.py
 
 **Rishit Pandya**  
 Master of Data Science — University of Adelaide 🇦🇺  
-[GitHub](https://github.com/RishitPandya22) · [LinkedIn](www.linkedin.com/in/
-rishit-pandya-854b7928a
-)
+[GitHub](https://github.com/RishitPandya22) · [LinkedIn](www.linkedin.com/in/rishit-pandya-854b7928a)
+
 
 ---
 
