@@ -73,7 +73,7 @@ finops-analytics-platform/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/RishitPandya22E/finops-analytics-platform.git
+git clone https://github.com/RishitPandya22/finops-analytics-platform.git
 cd finops-analytics-platform
 
 # 2. Create virtual environment
