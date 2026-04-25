@@ -1,0 +1,2 @@
+revenue_rmse,revenue_mae,revenue_r2,churn_auc,churn_accuracy,churn_model_name,profit_rmse,profit_mae,profit_r2
+78.75,49.5,0.9984,0.992,0.965,Gradient Boosting,5.9026,5.0874,-0.0595
